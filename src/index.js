@@ -1,17 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Appbar from "./components/Appbar";
+import Container from '@mui/material/Container';
+import Home from "./views/Home";
+import Movie from "./views/Movie";
+import People from "./views/People";
+export default function App() {
+  return (
+    <div>
+      <Router>
+      <Appbar/>
+      <Container style={{marginTop: '50px'}}>
+          <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/movie/:id' element={<Movie/>} />
+          <Route path='/people' element={<People/>} />
+          </Routes>
+      </Container>
+    </Router>
+    </div>
+  );
+}
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+ReactDOM.render(<App />, document.getElementById("root"));
